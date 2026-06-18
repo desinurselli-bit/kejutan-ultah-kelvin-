@@ -156,3 +156,30 @@ button:disabled {
         transform: translateY(0);
     }
 }
+/* Menyembunyikan teks surat di awal agar bisa diberi efek mengetik */
+.surat p {
+    display: none;
+    white-space: normal;
+    overflow: hidden;
+}
+
+/* Penggerak animasi love dan bintang (pastikan ini ada juga) */
+.floating-heart {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: flyUp linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes flyUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
