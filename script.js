@@ -18,7 +18,7 @@ startBtn.addEventListener('click', () => {
 
 // Aksi ketika tombol Tiup Lilin diklik
 blowBtn.addEventListener('click', () => {
-    // Mengubah kue utuh menjadi kue potongan (lilin padam)
+    // Mengubah kue utuh menjadi kue potongan (efek lilin padam)
     cakeEmoji.innerHTML = '🍰';
     
     // Beri jeda 1,2 detik agar efek lilin padam terlihat, lalu pindah ke halaman surat
@@ -26,7 +26,7 @@ blowBtn.addEventListener('click', () => {
         page2.classList.add('hidden');
         page3.classList.remove('hidden');
         
-        // MENJALANKAN EFEK TEKS MENGETIK OTOMATIS SAAT HALAMAN SURAT TERBUKA
+        // Jalankan efek mengetik beruntun
         startTypingEffect();
     }, 1200); 
 });
@@ -44,35 +44,47 @@ akhirBtn.addEventListener('click', () => {
 });
 
 // ==========================================
-// KODE UNTUK EFEK TEKS BERGERAK (TYPING EFFECT)
+// KODE FASTER & RELIABLE TYPING EFFECT (BERUNTUN PARAGRAF DEMI PARAGRAF)
 // ==========================================
 function startTypingEffect() {
     const paragraphs = document.querySelectorAll('.surat p');
-    paragraphs.forEach((p) => {
-        const text = p.innerHTML;
-        p.innerHTML = '';
-        p.style.display = 'block';
-        
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                // Jika mendeteksi kode tag HTML (seperti spasi khusus), langsung masukkan
-                if (text.substr(i, 4) === '&amp;') {
-                    p.innerHTML += '&';
-                    i += 5;
+    let currentParagraph = 0;
+
+    function typeParagraph() {
+        if (currentParagraph < paragraphs.length) {
+            const p = paragraphs[currentParagraph];
+            const originalText = p.innerHTML;
+            p.innerHTML = '';
+            p.style.display = 'block'; // Tampilkan paragraf yang sedang diketik
+            
+            let i = 0;
+            function typeLetter() {
+                if (i < originalText.length) {
+                    // Cek kode spasi khusus browser agar tidak rusak
+                    if (originalText.substr(i, 6) === '&nbsp;') {
+                        p.innerHTML += ' ';
+                        i += 6;
+                    } else {
+                        p.innerHTML += originalText.charAt(i);
+                        i++;
+                    }
+                    setTimeout(typeLetter, 25); // Kecepatan ketik (25ms per huruf)
                 } else {
-                    p.innerHTML += text.charAt(i);
-                    i++;
+                    // Jika paragraf ini selesai, lanjut ke paragraf berikutnya
+                    currentParagraph++;
+                    setTimeout(typeParagraph, 300); // Jeda antar paragraf 0,3 detik
                 }
-                setTimeout(type, 30); // Kecepatan mengetik teks (30 milidetik per huruf)
             }
+            typeLetter();
         }
-        type();
-    });
+    }
+    
+    // Mulai ketikan pertama
+    typeParagraph();
 }
 
 // ==========================================
-// KODE UNTUK ANIMASI LOVE & BINTANG TERBANG
+// KODE ANIMASI LOVE & BINTANG TERBANG
 // ==========================================
 setInterval(() => {
     const heart = document.createElement('div');
@@ -80,7 +92,7 @@ setInterval(() => {
     heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
     heart.classList.add('floating-heart');
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Kecepatan terbang 2-5 detik
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
     heart.style.fontSize = Math.random() * 20 + 15 + 'px';
     document.body.appendChild(heart);
     
