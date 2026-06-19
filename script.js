@@ -12,72 +12,58 @@ const page4 = document.getElementById('page4');
 const page5 = document.getElementById('page5');
 const cakeEmoji = document.getElementById('cakeEmoji');
 
-// --- Navigasi Halaman ---
-startBtn.addEventListener('click', () => { page1.classList.add('hidden'); page2.classList.remove('hidden'); });
+// --- Fungsi Navigasi Halaman ---
+startBtn.addEventListener('click', () => {
+    page1.classList.add('hidden');
+    page2.classList.remove('hidden');
+});
 
 blowBtn.addEventListener('click', () => {
     cakeEmoji.innerText = '🍰';
     setTimeout(() => {
         page2.classList.add('hidden');
         page3.classList.remove('hidden');
-        startTyping();
-    }, 1200);
+    }, 1000);
 });
 
-fotoBtn.addEventListener('click', () => { page3.classList.add('hidden'); page4.classList.remove('hidden'); });
-
-akhirBtn.addEventListener('click', () => { page4.classList.add('hidden'); page5.classList.remove('hidden'); });
-
-pemicuKejutan.addEventListener('click', () => {
-    pemicuKejutan.style.display = 'none'; // Sembunyikan tombol setelah diklik
-    mulaiHujanHati();
+fotoBtn.addEventListener('click', () => {
+    page3.classList.add('hidden');
+    page4.classList.remove('hidden');
 });
 
-// --- Efek Mengetik Surat ---
-function startTyping() {
-    const paragraphs = document.querySelectorAll('.surat p');
-    let idx = 0;
-    function type() {
-        if (idx < paragraphs.length) {
-            paragraphs[idx].style.display = 'block';
-            idx++;
-            setTimeout(type, 1000); // Muncul tiap 1 detik
-        }
-    }
-    type();
-}
+akhirBtn.addEventListener('click', () => {
+    page4.classList.add('hidden');
+    page5.classList.remove('hidden');
+});
 
-// --- Animasi Hujan Hati "I Love You" ---
-function buatSatuHati(centerX, centerY) {
-    let container = document.getElementById('love-container');
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'love-container';
-        document.body.appendChild(container);
-    }
+// --- Logika Kejutan 3D (Halaman Terakhir) ---
+pemicuKejutan.addEventListener('click', function() {
+    // Sembunyikan tombol pemicu
+    this.style.display = 'none';
     
-    // Rumus matematika hati (skala 8)
-    for (let i = 0; i < 30; i++) {
-        const t = (i / 30) * 2 * Math.PI;
-        const x = 16 * Math.pow(Math.sin(t), 3) * 8;
-        const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 8;
-        
-        const span = document.createElement('span');
-        span.innerText = 'I Love You';
-        span.className = 'text-love';
-        span.style.left = `${centerX + x}px`;
-        span.style.top = `${centerY + y}px`;
-        container.appendChild(span);
-        
-        // Hapus elemen setelah animasi selesai (4 detik)
-        setTimeout(() => span.remove(), 4000);
-    }
-}
+    // Tampilkan container animasi
+    const container3d = document.getElementById('love-3d-container');
+    container3d.classList.remove('hidden');
 
-function mulaiHujanHati() {
-    // Ledakan awal
-    const hujan = () => buatSatuHati(Math.random() * window.innerWidth, Math.random() * window.innerHeight * 0.7);
-    hujan(); hujan(); hujan(); 
-    // Hujan berkelanjutan
-    setInterval(hujan, 1000);
-}
+    // Buat formasi hati 3D
+    const heartContainer = document.getElementById('heart');
+    const totalText = 60; // Jumlah teks "I Love You"
+
+    for (let i = 0; i < totalText; i++) {
+        const textElement = document.createElement('div');
+        textElement.className = 'love-text';
+        textElement.innerText = 'I Love You';
+        
+        // Perhitungan matematika untuk posisi 3D
+        const phi = Math.acos(-1 + (2 * i) / totalText);
+        const theta = Math.sqrt(totalText * Math.PI) * phi;
+
+        const posX = 100 * Math.sin(phi) * Math.cos(theta);
+        const posY = 100 * Math.sin(phi) * Math.sin(theta);
+        const posZ = 100 * Math.cos(phi);
+
+        // Terapkan posisi pada elemen
+        textElement.style.transform = `translate3d(${posX + 100}px, ${posY + 100}px, ${posZ}px)`;
+        heartContainer.appendChild(textElement);
+    }
+});
