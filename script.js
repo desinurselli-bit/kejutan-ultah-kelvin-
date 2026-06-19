@@ -35,6 +35,11 @@ blowBtn.addEventListener('click', () => {
 fotoBtn.addEventListener('click', () => {
     page3.classList.add('hidden');
     page4.classList.remove('hidden');
+    / TAMBAHKAN KODE INI DI BAWAHNYA:
+    const video = document.getElementById('myVideo');
+    if (video) {
+        video.play();
+    }
 });
 
 // Pindah dari halaman 4 ke halaman 5 (Pesan Terakhir)
