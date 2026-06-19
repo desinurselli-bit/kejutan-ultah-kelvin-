@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday Boyfiee ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,15 +10,17 @@
 
 <div class="container">
 
+    <!-- HALAMAN 1: Pembuka -->
     <div id="page1">
         <h1>🎂 HAPPY BIRTHDAY 🎂</h1>
         <h2>BOYFIEE ❤️</h2>
-        <p style="text-align: center;">Selamat Ulang Tahun Hasianku ❤️</p>
+        <p style="text-align: center; color: #4a4a4a;">Selamat Ulang Tahun Hasianku ❤️</p>
         <button id="startBtn">
             🎁 Mulai Kejutan
         </button>
     </div>
 
+    <!-- HALAMAN 2: Tiup Lilin -->
     <div id="page2" class="hidden">
         <h2>Buatlah Harapanmu ❤️</h2>
         <div class="cake" id="cakeEmoji" style="font-size: 5em; text-align: center; margin: 20px 0;">
@@ -29,6 +31,7 @@
         </button>
     </div>
 
+    <!-- HALAMAN 3: Surat Cinta -->
     <div id="page3" class="hidden">
         <h2>💌 Untuk Hasianku ❤️</h2>
         <div class="surat">
@@ -36,9 +39,9 @@
             
             <p>Terima kasih, ya, sudah menjadi orang yang selalu setia ada bersamaku selama 4 tahun ini. Semoga Tuhan memberkati setiap pekerjaan, aktivitas dan langkah Hasian.</p>
             
-            <p>Biarlah Tuhan yang menuntun dan memberkati perjalanan hubungan kita ke depan agar kita tetap terus bersama melewati setiap kesalahpahaman maupun ego masing-masing, aku berharap kita bisa semakin dewasa. Aku juga berharap kita bisa semakin membaik dalam hal komunikasi, perlakuan, rasa percaya, dan yang terpenting: menjaga komitmen kita. Terutama kamu yang sudah sering berjanji tetapi selalu kamu ingkari, semoga kedepannya kita sama-sama berubah.</p>
+            <p>Biarlah Tuhan yang menuntun dan memberkati perjalanan hubungan kita ke depan agar kita tetap terus bersama melewati setiap kesalahpahaman maupun ego masing-masing, aku berharap kita bisa semakin dewasa. Aku juga berharap kita bisa semakin membaik dalam hal komunikasi, perlakuan, rasa percaya, dan yang terpenting: menjaga komitmen kita.</p>
             
-            <h3 style="text-align: center;">❤️ I LOVE YOU MORE SAYANGKU ❤️</h3>
+            <h3 style="text-align: center; margin-top: 20px;">❤️ I LOVE YOU MORE SAYANGKU ❤️</h3>
             <div style="text-align: center;">
                 <button id="fotoBtn">
                     📸 Lihat Kenangan Kita
@@ -47,14 +50,17 @@
         </div>
     </div>
 
+    <!-- HALAMAN 4: Foto (Love) & Video (Kotak) -->
     <div id="page4" class="hidden">
         <h2>❤️ KELVIN & DESY ❤️</h2>
         
-        <div class="love-frame">
+        <!-- FOTO: BINGKAI BENTUK HATI -->
+        <div class="love-frame-foto">
             <img src="foto.jpg" alt="Kenangan Kelvin dan Desy">
         </div>
 
-        <div class="love-frame">
+        <!-- VIDEO: BINGKAI KOTAK BIASA -->
+        <div class="video-frame-kotak">
             <video id="myVideo" controls playsinline>
                 <source src="video.mp4" type="video/mp4">
                 Browser kamu tidak mendukung video HTML5.
@@ -67,12 +73,18 @@
         </button>
     </div>
 
+    <!-- HALAMAN 5: Pesan Terakhir -->
     <div id="page5" class="hidden">
-        <p style="text-align: center; font-size: 1.1em; line-height: 1.6; margin-bottom: 25px; padding: 0 10px;">
-            Jangan pernah merasa sendiri ya, karena masih ada aku di sini yang selalu ada untukmu untuk mendengar keluh kesahmu layaknya seorang pasangan. Maaf kalau selama ini aku masih sulit untuk menurunkan egoku, tapi percayalah di sini masih tetap "KAMU". Tetap jadi tentara yang baik dalam menjalankan tugas ataupun dalam menjalankan peran sebagai pasangan. <br><br><b>NOTED:</b> Jangan terpengaruh oleh teman-temanmu yang berkelakuan tidak baik, tetap jadi kelvin yang aku kenal 4 tahun lalu.
-        </p>
+        <div class="surat final-pesan">
+            <p style="text-align: center; font-size: 1.1em; line-height: 1.6; color: #4a4a4a;">
+                Jangan pernah merasa sendiri ya, karena masih ada aku di sini yang selalu ada untukmu untuk mendengar keluh kesahmu layaknya seorang pasangan. Maaf kalau selama ini aku masih sulit untuk menurunkan egoku, tapi percayalah di sini masih tetap "KAMU". Tetap jadi tentara yang baik dalam menjalankan tugas ataupun dalam menjalankan peran sebagai pasangan.
+            </p>
+            <p style="text-align: center; font-weight: bold; color: #d63031; margin-top: 15px;">
+                NOTED: Jangan terpengaruh oleh teman-temanmu yang berkelakuan tidak baik, tetap jadi kelvin yang aku kenal 4 tahun lalu.
+            </p>
+        </div>
 
-        <h1>❤️ I LOVE YOU MORE ❤️</h1>
+        <h1 style="margin-top: 30px;">❤️ I LOVE YOU MORE ❤️</h1>
         <h2>Happy Birthday To My Favorite Soldier ❤️</h2>
         <h3>I'm Always Proud Of You ❤️</h3>
         <h2>- DESY -</h2>
@@ -80,7 +92,7 @@
 
 </div>
 
-<script src="./script.js?v=1"></script>
+<script src="./script.js"></script>
 
 </body>
 </html>
