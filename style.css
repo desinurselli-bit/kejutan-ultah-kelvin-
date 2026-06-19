@@ -1,94 +1,103 @@
-/* --- Tampilan Umum --- */
+/* TAMPILAN DASAR WEBSITE */
 body {
     margin: 0;
     padding: 0;
     background-color: #ffe6e6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
+    color: #4a4a4a;
     overflow-x: hidden;
-    min-height: 100vh;
 }
 
 .container {
     max-width: 500px;
-    margin: 40px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* --- Tombol --- */
+h1, h2, h3 {
+    text-align: center;
+    color: #d63031;
+}
+
 button {
-    margin: 20px 0;
-    padding: 15px 30px;
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 1em;
     background-color: #ff7675;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: transform 0.2s, background-color 0.3s;
-    position: relative;
-    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
 }
 
-button:hover {
-    background-color: #d63031;
-    transform: scale(1.05);
+button:active {
+    transform: scale(0.95);
 }
 
-/* --- Surat --- */
 .surat {
-    text-align: left;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     line-height: 1.6;
-    color: #444;
-    padding: 10px;
 }
 
-/* --- Animasi 3D Hati --- */
-#love-3d-container {
-    margin-top: 50px;
-    perspective: 1000px;
+/* MENYEMBUNYIKAN TEKS SURAT UNTUK EFEK MENGETIK */
+.surat p {
+    display: none;
+    white-space: normal;
+    overflow: hidden;
+    margin-bottom: 15px;
 }
 
-.heart-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    transform-style: preserve-3d;
-    animation: rotateHeart 15s linear infinite;
-    margin: 0 auto;
+/* KODE BINGKAI LOVE UNTUK FOTO & VIDEO */
+.love-frame {
+    width: 280px;
+    height: 260px;
+    margin: 20px auto;
+    overflow: hidden;
+    clip-path: polygon(50% 15%, 65% 0%, 85% 0%, 100% 20%, 100% 45%, 85% 70%, 50% 100%, 15% 70%, 0% 45%, 0% 20%, 15% 0%, 35% 0%);
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.love-text {
-    position: absolute;
-    color: #ff7675;
-    font-size: 14px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 118, 117, 0.8);
-    white-space: nowrap;
+.love-frame img, .love-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-@keyframes rotateHeart {
-    0% { transform: rotateX(0deg) rotateY(0deg); }
-    100% { transform: rotateX(360deg) rotateY(360deg); }
+/* PENGGERAK ANIMASI LOVE DAN BINTANG TERBANG */
+.floating-heart {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: flyUp linear forwards;
+    opacity: 0.8;
 }
 
-/* --- Responsif (HP) --- */
-@media (max-width: 600px) {
-    .container {
-        margin: 20px;
-        padding: 20px;
+@keyframes flyUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
     }
-    .heart-container {
-        width: 200px;
-        height: 200px;
+    100% {
+        transform: translateY(-105vh) rotate(360deg);
+        opacity: 0;
     }
 }
