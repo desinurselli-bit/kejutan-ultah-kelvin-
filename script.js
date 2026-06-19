@@ -1,75 +1,53 @@
-// --- Inisialisasi Elemen ---
-const startBtn = document.getElementById('startBtn');
-const blowBtn = document.getElementById('blowBtn');
-const fotoBtn = document.getElementById('fotoBtn');
-const akhirBtn = document.getElementById('akhirBtn');
+// Memastikan elemen ada sebelum digunakan
+const pages = ['page1', 'page2', 'page3', 'page4', 'page5'];
 
-const page1 = document.getElementById('page1');
-const page2 = document.getElementById('page2');
-const page3 = document.getElementById('page3');
-const page4 = document.getElementById('page4');
-const page5 = document.getElementById('page5');
-const cakeEmoji = document.getElementById('cakeEmoji');
+function showPage(pageId) {
+    pages.forEach(id => {
+        const page = document.getElementById(id);
+        if (page) page.classList.add('hidden');
+    });
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) targetPage.classList.remove('hidden');
+}
 
-// --- Navigasi Halaman ---
-startBtn.addEventListener('click', () => {
-    page1.classList.add('hidden');
-    page2.classList.remove('hidden');
-});
+// Navigasi Utama
+document.getElementById('startBtn').addEventListener('click', () => showPage('page2'));
 
-blowBtn.addEventListener('click', () => {
-    cakeEmoji.innerHTML = '🍰';
+document.getElementById('blowBtn').addEventListener('click', () => {
+    document.getElementById('cakeEmoji').innerText = '🍰';
     setTimeout(() => {
-        page2.classList.add('hidden');
-        page3.classList.remove('hidden');
+        showPage('page3');
         startTypingEffect();
-    }, 1200);
+    }, 1000);
 });
 
-fotoBtn.addEventListener('click', () => {
-    page3.classList.add('hidden');
-    page4.classList.remove('hidden');
-    
-    // Video Play - Diberi proteksi agar tidak merusak script
-    const video = document.getElementById('myVideo');
-    if (video) {
-        video.play().catch(e => console.log("Video auto-play diblokir browser, tidak masalah."));
-    }
-});
+document.getElementById('fotoBtn').addEventListener('click', () => showPage('page4'));
+document.getElementById('akhirBtn').addEventListener('click', () => showPage('page5'));
 
-akhirBtn.addEventListener('click', () => {
-    page4.classList.add('hidden');
-    page5.classList.remove('hidden');
-});
-
-// --- Efek Mengetik Paragraf ---
+// Efek Mengetik di Halaman 3
 function startTypingEffect() {
     const paragraphs = document.querySelectorAll('.surat p');
     paragraphs.forEach((p, index) => {
-        p.style.display = 'none'; // Reset awal
         setTimeout(() => {
             p.style.display = 'block';
         }, index * 1000); // Muncul tiap 1 detik
     });
 }
 
-// --- Animasi Hati Terbang (Ringan & Aman) ---
-function createHeart() {
+// Animasi Hati Terbang (Untuk Halaman Akhir)
+function createFloatingHeart() {
     const heart = document.createElement('div');
-    const symbols = ['❤️', '✨'];
-    heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.innerHTML = '❤️';
     heart.className = 'floating-heart';
     heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
     heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
     document.body.appendChild(heart);
     
-    // Hapus hati otomatis setelah animasi selesai untuk meringankan memory
     setTimeout(() => heart.remove(), 5000);
 }
 
-// Hanya jalankan animasi di Halaman 1 dan Halaman 5 agar tidak memberatkan
-setInterval(() => {
-    if (!page1.classList.contains('hidden') || !page5.classList.contains('hidden')) {
-        createHeart();
-    }
-}, 800);
+// Panggil animasi di halaman akhir
+document.getElementById('akhirBtn').addEventListener('click', () => {
+    setInterval(createFloatingHeart, 500);
+});
