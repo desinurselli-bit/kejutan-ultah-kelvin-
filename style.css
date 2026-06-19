@@ -1,281 +1,103 @@
 /* TAMPILAN DASAR WEBSITE */
-
 body {
-
     margin: 0;
-
     padding: 0;
-
-    background-color: #ffe6e6; /* Warna pink muda */
-
+    background-color: #ffe6e6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    color: #4a4a4a;
     overflow-x: hidden;
-
-    -webkit-tap-highlight-color: transparent;
-
 }
-
-
 
 .container {
-
     max-width: 500px;
-
     margin: 0 auto;
-
     padding: 20px;
-
     box-sizing: border-box;
-
     min-height: 100vh;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
-
-    position: relative;
-
-    z-index: 10;
-
 }
-
-
 
 .hidden {
-
     display: none !important;
-
 }
-
-
 
 h1, h2, h3 {
-
     text-align: center;
-
-    color: #d63031; /* Warna merah tua */
-
-    margin-top: 10px;
-
-    margin-bottom: 10px;
-
+    color: #d63031;
 }
-
-
-
-h1 { font-size: 2em; }
-
-h2 { font-size: 1.5em; }
-
-h3 { font-size: 1.1em; font-weight: normal; color: #636e72; }
-
-
 
 button {
-
     display: block;
-
-    margin: 25px auto;
-
-    padding: 14px 28px;
-
+    margin: 20px auto;
+    padding: 12px 24px;
     font-size: 1em;
-
-    font-weight: bold;
-
-    background-color: #ff7675; /* Warna pink tombol */
-
+    background-color: #ff7675;
     color: white;
-
     border: none;
-
-    border-radius: 30px;
-
+    border-radius: 25px;
     cursor: pointer;
-
-    box-shadow: 0 5px 10px rgba(214, 48, 49, 0.2);
-
-    transition: all 0.2s ease;
-
-    border: 2px solid transparent;
-
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
 }
-
-
 
 button:active {
-
-    transform: scale(0.96);
-
-    box-shadow: 0 2px 5px rgba(214, 48, 49, 0.2);
-
+    transform: scale(0.95);
 }
-
-
-
-/* GAYA SURAT */
 
 .surat {
-
     background: white;
-
-    padding: 25px;
-
-    border-radius: 20px;
-
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-
-    line-height: 1.7;
-
-    color: #2d3436;
-
-    margin-bottom: 20px;
-
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    line-height: 1.6;
 }
-
-
 
 /* MENYEMBUNYIKAN TEKS SURAT UNTUK EFEK MENGETIK */
-
 .surat p {
-
     display: none;
-
     white-space: normal;
-
     overflow: hidden;
-
     margin-bottom: 15px;
-
-    font-size: 1em;
-
 }
 
-
-
-/* === GAYA HALAMAN 4 (PENTING!) === */
-
-
-
-/* 1. FOTO: BINGKAI BENTUK HATI */
-
-.love-frame-foto {
-
+/* KODE BINGKAI LOVE UNTUK FOTO & VIDEO */
+.love-frame {
     width: 280px;
-
     height: 260px;
-
     margin: 20px auto;
-
     overflow: hidden;
-
-    /* Trik potong bentuk hati */
-
     clip-path: polygon(50% 15%, 65% 0%, 85% 0%, 100% 20%, 100% 45%, 85% 70%, 50% 100%, 15% 70%, 0% 45%, 0% 20%, 15% 0%, 35% 0%);
-
     background-color: #fff;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
-    border: 5px solid white; /* Memberi kesan bingkai foto putih */
-
-    box-sizing: border-box;
-
 }
 
-
-
-.love-frame-foto img {
-
+.love-frame img, .love-frame video {
     width: 100%;
-
     height: 100%;
-
-    object-fit: cover; /* Agar foto tidak gepeng */
-
+    object-fit: cover;
 }
-
-
-
-/* 2. VIDEO: BINGKAI KOTAK BIASA */
-
-.video-frame-kotak {
-
-    width: 100%; /* Lebar penuh container */
-
-    max-width: 400px;
-
-    margin: 25px auto;
-
-    background-color: #000; /* Latar belakang hitam untuk video */
-
-    border-radius: 15px; /* Sedikit melengkung di pojok biar estetik, tapi tetap kotak */
-
-    overflow: hidden;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-
-    border: 4px solid white; /* Bingkai putih tebal seperti di gambar contoh */
-
-}
-
-
-
-.video-frame-kotak video {
-
-    width: 100%;
-
-    display: block;
-
-    height: auto; /* Mengikuti rasio video asli */
-
-}
-
-
-
-/* GAYA PESAN AKHIR */
-
-.final-pesan {
-
-    background: rgba(255, 255, 255, 0.8);
-
-    border: 2px solid #ff7675;
-
-}
-
-
 
 /* PENGGERAK ANIMASI LOVE DAN BINTANG TERBANG */
-
 .floating-heart {
-
     position: fixed;
-
     bottom: -50px;
-
-pointer-events: none;
-
-    z-index: 1;
-
+    pointer-events: none;
+    z-index: 9999;
     animation: flyUp linear forwards;
-
     opacity: 0.8;
-
 }
 
-
-
 @keyframes flyUp {
-
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-
-    100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
-
-} 
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
