@@ -18,7 +18,7 @@ startBtn.addEventListener('click', () => {
 
 // Aksi ketika tombol Tiup Lilin diklik
 blowBtn.addEventListener('click', () => {
-    // Mengubah kue utuh menjadi kue potongan (efek lilin padam)
+    // Mengubah kue utuh menjadi kue potongan (atau ganti foto transparanmu di sini)
     cakeEmoji.innerHTML = '🍰';
     
     // Beri jeda 1,2 detik agar efek lilin padam terlihat, lalu pindah ke halaman surat
@@ -44,7 +44,7 @@ akhirBtn.addEventListener('click', () => {
 });
 
 // ==========================================
-// KODE FASTER & RELIABLE TYPING EFFECT (BERUNTUN PARAGRAF DEMI PARAGRAF)
+// KODE FASTER & RELIABLE TYPING EFFECT (UTUH & AMAN)
 // ==========================================
 function startTypingEffect() {
     const paragraphs = document.querySelectorAll('.surat p');
@@ -55,12 +55,11 @@ function startTypingEffect() {
             const p = paragraphs[currentParagraph];
             const originalText = p.innerHTML;
             p.innerHTML = '';
-            p.style.display = 'block'; // Tampilkan paragraf yang sedang diketik
+            p.style.display = 'block'; 
             
             let i = 0;
             function typeLetter() {
                 if (i < originalText.length) {
-                    // Cek kode spasi khusus browser agar tidak rusak
                     if (originalText.substr(i, 6) === '&nbsp;') {
                         p.innerHTML += ' ';
                         i += 6;
@@ -68,35 +67,69 @@ function startTypingEffect() {
                         p.innerHTML += originalText.charAt(i);
                         i++;
                     }
-                    setTimeout(typeLetter, 25); // Kecepatan ketik (25ms per huruf)
+                    setTimeout(typeLetter, 25); 
                 } else {
-                    // Jika paragraf ini selesai, lanjut ke paragraf berikutnya
                     currentParagraph++;
-                    setTimeout(typeParagraph, 300); // Jeda antar paragraf 0,3 detik
+                    setTimeout(typeParagraph, 300); 
                 }
             }
             typeLetter();
         }
     }
-    
-    // Mulai ketikan pertama
     typeParagraph();
 }
 
 // ==========================================
-// KODE ANIMASI LOVE & BINTANG TERBANG
+// KODE ANIMATION "I LOVE YOU" MEMBENTUK HATI BESAR
 // ==========================================
-setInterval(() => {
-    const heart = document.createElement('div');
-    const symbols = ['❤️', '⭐', '✨', '💖', '🌟'];
-    heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-    heart.classList.add('floating-heart');
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-    heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-    document.body.appendChild(heart);
+
+// 1. Rumus matematika kurva hati dengan skala besar
+function getHeartPosition(t) {
+    const scale = 22; // Membuat bentuk lingkaran hatinya BESAR
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
     
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}, 400);
+    return {
+        x: x * scale,
+        y: -y * scale
+    };
+}
+
+// 2. Memunculkan teks "I Love You" menyusun bentuk hati
+function generateHeartText() {
+    // Membuat container otomatis di body jika belum ada di HTML
+    let container = document.getElementById('love-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'love-container';
+        document.body.appendChild(container);
+    }
+
+    const t = Math.random() * 2 * Math.PI;
+    const pos = getHeartPosition(t);
+    
+    const span = document.createElement('span');
+    span.innerText = 'I Love You';
+    span.className = 'text-love';
+    
+    // Posisi pas di tengah layar browser lalu dibentuk jadi hati
+    span.style.left = `calc(50% + ${pos.x}px)`;
+    span.style.top = `calc(50% + ${pos.y}px)`;
+    
+    // Ukuran font tulisan diperbesar biar jelas dibaca
+    span.style.fontSize = Math.random() * (26 - 18) + 18 + 'px'; 
+    span.style.position = 'fixed';
+    span.style.color = '#ff7675';
+    span.style.zIndex = '-1'; // Berada di latar belakang agar tidak menutupi tombol/surat
+    span.style.opacity = Math.random() * (1 - 0.7) + 0.7;
+    
+    container.appendChild(span);
+    
+    // Agar web tidak lag dan bentuk hati tetap rapi, batasi jumlah teksnya
+    if (container.children.length > 180) {
+        container.removeChild(container.firstChild);
+    }
+}
+
+// Jalankan pembentukan hati secara cepat (setiap 50 milidetik)
+setInterval(generateHeartText, 50);
