@@ -260,3 +260,22 @@ button:active {
 
     bottom: -50px;
 
+pointer-events: none;
+
+    z-index: 1;
+
+    animation: flyUp linear forwards;
+
+    opacity: 0.8;
+
+}
+
+
+
+@keyframes flyUp {
+
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+
+    100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+
+} 
