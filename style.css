@@ -61,27 +61,42 @@ button:active {
     margin-bottom: 15px;
 }
 
-/* KODE KOTAK UNTUK FOTO & VIDEO (TIDAK LAGI BENTUK HATI) */
+/* FOTO: BERBENTUK HATI */
 .love-frame {
-    width: 90%; /* Mengikuti lebar layar */
-    max-width: 300px;
+    width: 280px;
+    height: 260px;
     margin: 20px auto;
     overflow: hidden;
-    border-radius: 20px; /* Membuat sudut kotak sedikit melengkung (estetik) */
+    clip-path: polygon(50% 15%, 65% 0%, 85% 0%, 100% 20%, 100% 45%, 85% 70%, 50% 100%, 15% 70%, 0% 45%, 0% 20%, 15% 0%, 35% 0%);
     background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.love-frame img, .love-frame video {
+.love-frame img {
     width: 100%;
-    height: auto; /* Agar video tidak terpotong */
+    height: 100%;
+    object-fit: cover;
+}
+
+/* VIDEO: BERBENTUK KOTAK BIASA */
+.video-container {
+    width: 90%;
+    max-width: 320px;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #000;
+}
+
+.video-container video {
+    width: 100%;
     display: block;
 }
 
-/* PENGGERAK ANIMASI LOVE DAN BINTANG TERBANG */
+/* ANIMASI LOVE & BINTANG TERBANG */
 .floating-heart {
     position: fixed;
     bottom: -50px;
