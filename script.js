@@ -14,33 +14,46 @@ const cakeEmoji = document.getElementById('cakeEmoji');
 startBtn.addEventListener('click', () => {
     page1.classList.add('hidden');
     page2.classList.remove('hidden');
+
+    // --- TAMBAHAN: MULAI MUSIK ---
+    const audio = document.getElementById('myMusic');
+    if (audio) {
+        audio.volume = 0.2; // Suara pelan (20%)
+        audio.play().catch(e => console.log("Menunggu interaksi pengguna..."));
+    }
 });
 
 // Aksi ketika tombol Tiup Lilin diklik
 blowBtn.addEventListener('click', () => {
-    // Mengubah kue utuh menjadi kue potongan (lilin padam)
     cakeEmoji.innerHTML = '🍰';
     
-    // Beri jeda 1,2 detik agar efek lilin padam terlihat, lalu pindah ke halaman surat
     setTimeout(() => {
         page2.classList.add('hidden');
         page3.classList.remove('hidden');
-        
-        // MENJALANKAN EFEK TEKS MENGETIK OTOMATIS SAAT HALAMAN SURAT TERBUKA
         startTypingEffect();
     }, 1200); 
 });
 
-// Pindah dari halaman 3 ke halaman 4 (Foto)
+// Pindah dari halaman 3 ke halaman 4 (Foto & Video)
 fotoBtn.addEventListener('click', () => {
     page3.classList.add('hidden');
     page4.classList.remove('hidden');
+
+    // --- TAMBAHAN: MULAI VIDEO ---
+    const video = document.getElementById('myVideo');
+    if (video) {
+        video.play().catch(e => console.log("Video perlu diklik manual"));
+    }
 });
 
 // Pindah dari halaman 4 ke halaman 5 (Pesan Terakhir)
 akhirBtn.addEventListener('click', () => {
     page4.classList.add('hidden');
     page5.classList.remove('hidden');
+    
+    // --- TAMBAHAN: OPSIONAL (Hentikan musik saat di halaman terakhir) ---
+    // const audio = document.getElementById('myMusic');
+    // if (audio) audio.pause();
 });
 
 // ==========================================
@@ -56,7 +69,6 @@ function startTypingEffect() {
         let i = 0;
         function type() {
             if (i < text.length) {
-                // Jika mendeteksi kode tag HTML (seperti spasi khusus), langsung masukkan
                 if (text.substr(i, 4) === '&amp;') {
                     p.innerHTML += '&';
                     i += 5;
@@ -64,7 +76,7 @@ function startTypingEffect() {
                     p.innerHTML += text.charAt(i);
                     i++;
                 }
-                setTimeout(type, 30); // Kecepatan mengetik teks (30 milidetik per huruf)
+                setTimeout(type, 30);
             }
         }
         type();
@@ -80,7 +92,7 @@ setInterval(() => {
     heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
     heart.classList.add('floating-heart');
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Kecepatan terbang 2-5 detik
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's'; 
     heart.style.fontSize = Math.random() * 20 + 15 + 'px';
     document.body.appendChild(heart);
     
